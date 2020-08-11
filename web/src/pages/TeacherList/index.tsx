@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
+import TeacherItem from '../../components/TeacherItem';
 
 import './styles.css';
 
 function TeacherList(){
   return (
-    <div id="oage-teacher-list">
+    <div id="page-teacher-list">
       <PageHeader title="Estes são os Proffys disponíveis.">
         <form id="search-teachers">
           <div className="input-block">
@@ -25,6 +26,14 @@ function TeacherList(){
 
         </form>
       </PageHeader>
+
+      <main>
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+      </main>
     </div>
   )
 }
