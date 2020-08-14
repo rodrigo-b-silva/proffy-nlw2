@@ -9,10 +9,11 @@ import './styles.css';
 function TeacherList(){
   return (
     <div id="page-teacher-list">
-      <PageHeader title="Estes são os Proffys disponíveis.">
+      <PageHeader 
+        title="Estes são os Proffys disponíveis.">
         <form id="search-teachers">
           <div className="input-block">
-            <label htmlFor="week_day">Matéria</label>
+            <label htmlFor="subject">Matéria</label>
             <input type="text" id="subject" />
           </div>
           <div className="input-block">
