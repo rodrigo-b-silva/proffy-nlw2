@@ -1,35 +1,55 @@
 import React from 'react';
+import api from '../../services/api';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  name: string;
+  avatar: string;
+  subject: string;
+  cost: number;
+  whatsapp: string;
+  bio: string;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+
+  function createConnection() {
+    api.post('/connections', {
+      user_id: teacher.id
+    });
+  }
+
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars0.githubusercontent.com/u/37749585?s=460&u=9fc994d3394d6f5e183d6ba0937284e31313ab87&v=4" alt=""/>
+        <img src={teacher.avatar} alt={teacher.name}/>
         <div>
-          <strong>Diego Fernandes</strong>
-          <span>Quimica</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
 
       <p>
-        Entusista de quimica, aposdsidj idjskdlojsdlksj lksjdlk sjdlksjdlksjdl kjdlksjdslkdj lkdjsl kdjs lk
-        <br /><br />
-        ksjkdljskld dlksmica, aposdsidj idjskdlojsdlksj lksjdlk sjdlksjdlksjdl kjdlksjdslkdj lkdjsl kdjs lk
+        {teacher.bio}
       </p>
 
       <footer>
         <p>
           Proço/hora
-          <strong>R$ 90.00</strong>
+          <strong>R$ {teacher.cost}</strong>
         </p>
-        <button type="button">
+        <a onClick={createConnection} target="_blank" href={`https://wa.me/${teacher.whatsapp}`}>
           <img src={whatsappIcon} alt="Whatsapp"/>
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   )
